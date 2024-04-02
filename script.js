@@ -1,8 +1,17 @@
+// Obtém o elemento "formulario" do HTML
 const formulario = document.getElementById('formulario');
+
+// Obtém o elemento "resultado" do HTML
 const resultado = document.getElementById('resultado');
 
+// Adiciona um evento "submit" ao formulário
 formulario.addEventListener('submit', (e) => {
+
+    // Evita que a página seja recarregada
     e.preventDefault();
+
+    // Obtém o nome do aluno
+    const nome = document.getElementById('nome').value;
 
     // Converte as notas para float
     const p1 = parseFloat(document.getElementById('p1').value);
@@ -11,6 +20,7 @@ formulario.addEventListener('submit', (e) => {
 
     // Valida se os valores são números
     if (isNaN(p1) || isNaN(p2) || isNaN(pim)) {
+        // Exibe uma mensagem de erro se não forem números
         resultado.innerHTML = 'Erro: valores inválidos. Insira apenas números.';
         return;
     }
@@ -24,6 +34,7 @@ formulario.addEventListener('submit', (e) => {
         pim < 0 ||
         pim > 10
     ) {
+        // Exibe uma mensagem de erro se as notas estiverem fora da faixa
         resultado.innerHTML = 'Erro: as notas devem estar entre 0 e 10.';
         return;
     }
@@ -31,6 +42,7 @@ formulario.addEventListener('submit', (e) => {
     // Valida se casas decimais são válidas (apenas 2)
     const regex = /^\d+(\.\d{1,2})?$/;
     if (!regex.test(p1.toString()) || !regex.test(p2.toString()) || !regex.test(pim.toString())) {
+        // Exibe uma mensagem de erro se as casas decimais forem inválidas
         if (!regex.test(p1.toString())) {
             resultado.innerHTML = 'Erro: a nota da P1 possui casas decimais inválidas.';
             return;
@@ -46,11 +58,23 @@ formulario.addEventListener('submit', (e) => {
     // Calcula a média
     const media = ((p1 * 4) + (p2 * 4) + (pim * 2)) / 10;
 
-    // Exibe a média com 2 casas decimais
-    resultado.innerHTML = `Sua média final é: ${media.toLocaleString('pt-BR', {minimumFractionDigits: 2})}.`;
+    // Define a mensagem de aprovação ou reprovação
+    let mensagem = `Olá ${nome}, sua média final é: ${media.toLocaleString('pt-BR', {minimumFractionDigits: 2})}.`;
+    if (media >= 7) {
+        mensagem += ` Você foi <strong>aprovado(a)</strong>!`;
+        // Adiciona a classe "aprovado" ao elemento "resultado"
+        resultado.classList.add('aprovado');
+    } else {
+        mensagem += ` Você foi <strong>reprovado(a)</strong>.`;
+        // Adiciona a classe "reprovado" ao elemento "resultado"
+        resultado.classList.add('reprovado');
+    }
 
-    // Efeitos visuais
+    // Exibe a mensagem com efeitos visuais
+    resultado.innerHTML = mensagem;
+    // Adiciona a classe "efeito" ao elemento "resultado"
     resultado.classList.add('efeito');
+    // Remove a classe "efeito" após 1 segundo
     setTimeout(() => {
         resultado.classList.remove('efeito');
     }, 1000);
