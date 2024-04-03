@@ -3,12 +3,13 @@ body {
     margin: 0;
     padding: 20px;
     text-align: center;
-    background-color: #f6f8fa;
+    background-color: #0A0C1A;
 }
 
 h1 {
     font-size: 24px;
     margin-top: 0;
+    color: white;
 }
 
 form {
@@ -17,6 +18,7 @@ form {
     align-items: center;
     margin: 20px auto;
     width: 80%;
+    color: white;
 }
 
 label {
@@ -46,7 +48,7 @@ button {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 18px;
-    text-align: left;
+    text-align: center;
 }
 
 .aprovado {
