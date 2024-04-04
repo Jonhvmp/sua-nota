@@ -1,6 +1,3 @@
-// Obtém o elemento "formulario" do HTML
-const formulario = document.getElementById('formulario');
-
 // Obtém o elemento "resultado" do HTML
 const resultado = document.getElementById('resultado');
 
