@@ -60,14 +60,13 @@ formulario.addEventListener('submit', (e) => {
     if (media >= 7) {
         mensagem += ` Você foi <strong>aprovado(a)</strong>!`;
         // Adiciona a classe "aprovado" ao elemento "resultado"
-        resultado.classList.add('aprovado');
-        // Remove a classe "aprovado" após 3 segundos
         resultado.classList.remove('reprovado');
+        resultado.classList.add('aprovado');
     } else {
         mensagem += ` Você foi <strong>reprovado(a)</strong>.`;
         // Adiciona a classe "reprovado" ao elemento "resultado"
-        resultado.classList.add('reprovado');
         resultado.classList.remove('aprovado');
+        resultado.classList.add('reprovado');
     }
 
     // Exibe a mensagem com efeitos visuais
